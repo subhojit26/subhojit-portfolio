@@ -15,7 +15,7 @@ import './Hero.css';
  * Landing screen. Owns the hero-only effects:
  *  - spotlight + grid that follow the cursor (CSS vars --mx / --my)
  *  - cursor particle trail + click bursts (only inside the hero)
- *  - gentle parallax + fade-out while scrolling away
+ *  - gentle fade-out while scrolling away (no drift, so it never slides into the next section)
  */
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -54,13 +54,12 @@ export default function Hero() {
     };
   }, []);
 
-  // parallax: slow drift, and fade only during the second half of the scroll
+  // fade only during the second half of the scroll; content stays put so it can't overlap the marquee
   useScrollFrame((y, vh) => {
     if (prefersReducedMotion || !innerRef.current) return;
     if (y > vh * 1.2 && innerRef.current.style.opacity === '0.000') return; // already hidden
     y = Math.min(y, vh * 1.2);
     const k = y / vh;
-    innerRef.current.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
     innerRef.current.style.opacity = Math.max(0, Math.min(1, 1 - (k - 0.45) / 0.6)).toFixed(3);
   });
 

@@ -26,6 +26,7 @@
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
   --gutter: clamp(16px, 5vw, 64px);
+  --nav-h: 80px; /* height of the fixed top nav */
   color-scheme: dark;
 }
 
