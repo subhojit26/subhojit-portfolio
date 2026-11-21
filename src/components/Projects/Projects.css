@@ -1,0 +1,130 @@
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) {
+  .projects { grid-template-columns: 1fr; }
+}
+
+/* ---------- card ---------- */
+.proj {
+  position: relative;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: clamp(24px, 3vw, 40px);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+}
+/* after the reveal, transform belongs to the tilt effect */
+.proj.in { transition: transform 0.25s ease-out, border-color 0.3s, background 0.6s, opacity 1s; }
+.proj::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  background: radial-gradient(500px circle at var(--px, 50%) var(--py, 50%), var(--glow), transparent 45%);
+}
+.proj:hover::before { opacity: 1; }
+.proj:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+
+.proj-meta {
+  font: 500 13px var(--font-mono);
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 64px;
+  min-height: 46px;
+}
+.proj-visual {
+  height: 190px;
+  margin: 22px 0;
+  border-radius: 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.6s;
+}
+.proj h3 { font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.04em; font-weight: 800; line-height: 1; }
+.proj h3 .serif { color: var(--accent); }
+.proj p { color: var(--muted); margin: 12px 0 0; font-size: 15px; }
+.proj p b { color: var(--fg); }
+.proj .tags { margin-top: auto; padding-top: 24px; }
+
+.proj-go {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background 0.3s, color 0.3s;
+  z-index: 2;
+}
+.proj:hover .proj-go { transform: rotate(-45deg); background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.proj-go svg { width: 18px; height: 18px; }
+
+/* ---------- visual: JobScout ---------- */
+.vis-jobs { position: absolute; inset: 14px; display: flex; flex-direction: column; gap: 8px; }
+.vis-job-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.vis-job-row i { width: 18px; height: 18px; border-radius: 5px; background: color-mix(in srgb, var(--accent-2) 60%, transparent); flex: none; }
+.vis-job-row div { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.vis-job-row span { height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--fg) 14%, transparent); }
+.vis-job-row em { font: 600 10px var(--font-mono); font-style: normal; color: var(--accent); }
+.vis-toast {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  font: 600 11px var(--font-mono);
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.4);
+  animation: toast 4.5s ease-in-out infinite;
+}
+@keyframes toast {
+  0%, 10% { transform: translateY(40px); opacity: 0; }
+  25%, 80% { transform: none; opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0; }
+}
+
+/* ---------- visual: MailGenie ---------- */
+.vis-mail {
+  position: absolute;
+  inset: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  padding: 0 10px;
+}
+.vis-mail .ln { height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--fg) 10%, transparent); }
+.vis-mail .ai {
+  align-self: flex-start;
+  font: 600 11px var(--font-mono);
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  margin-top: 6px;
+}
+.vis-mail .typed { height: 8px; border-radius: 4px; background: var(--accent-2); width: 0; animation: typeline 3.5s ease-in-out infinite; }
+@keyframes typeline {
+  0%, 15% { width: 0; }
+  60%, 100% { width: 85%; }
+}

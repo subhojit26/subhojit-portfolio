@@ -1,0 +1,46 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(16px, 4vw, 48px);
+  padding-right: clamp(90px, 10vw, 140px); /* leaves room for the bulb */
+  transition: padding 0.3s, background 0.3s;
+}
+.navbar.scrolled {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo { font-family: var(--font-mono); font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.logo b {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 13px;
+}
+
+.nav-links { display: flex; gap: 6px; font-family: var(--font-mono); font-size: 13px; }
+.nav-links a {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--fg); }
+.nav-links a span { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+}

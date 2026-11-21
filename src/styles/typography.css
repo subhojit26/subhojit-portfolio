@@ -1,0 +1,42 @@
+/*
+ * Display typography: loaded LAST (see main.jsx) so it wins over component styles.
+ * Headline-ish elements use the display face (--font-display, Clash Display);
+ * body copy stays in Geist and code in Geist Mono.
+ * Sizes for all big text live here so the scale is easy to tune in one place.
+ */
+.hero-name,
+.section-title,
+.contact-big,
+.proj h3,
+.exp-item h3,
+.edu h3,
+.edu-gpa b,
+.stat b,
+.ach-card h4,
+.arch-meta b,
+.logo {
+  font-family: var(--font-display);
+}
+
+/* ---------- scale ---------- */
+.hero-name {
+  font-size: clamp(40px, min(6.6vw, 12vh), 92px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+@media (min-width: 981px) and (max-height: 820px) {
+  .hero-name { font-size: clamp(40px, 10.5vh, 92px); }
+}
+
+.section-title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+.contact-big { font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -0.025em; }
+.proj h3 { font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -0.015em; }
+.exp-item h3 { font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; letter-spacing: -0.02em; }
+.exp-item h3 .serif { font-weight: 500; }
+.edu h3 { font-size: clamp(18px, 1.8vw, 22px); font-weight: 600; letter-spacing: -0.015em; }
+.stat b { font-size: clamp(28px, 3vw, 40px); font-weight: 600; letter-spacing: -0.03em; }
+.edu-gpa b { font-size: 38px; font-weight: 600; letter-spacing: -0.03em; }
+.ach-card h4,
+.arch-meta b { font-weight: 600; letter-spacing: 0; }
+.logo { font-weight: 600; letter-spacing: 0; }

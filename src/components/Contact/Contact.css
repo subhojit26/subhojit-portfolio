@@ -1,0 +1,116 @@
+.contact { padding-bottom: 64px; }
+
+/* ---------- header: full width ---------- */
+.contact-head { margin-bottom: 32px; }
+.contact-big { line-height: 0.95; display: inline-block; }
+.contact-big .serif { color: var(--accent); }
+.contact-tagline { color: var(--muted); margin-top: 14px; font-size: 16px; max-width: 560px; }
+
+/* ---------- two equal-height cards ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 20px;
+  align-items: stretch; /* same top and bottom edge */
+}
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+.contact-card,
+.cform {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--card);
+  padding: clamp(20px, 3vw, 30px);
+}
+
+/* ---------- left card: direct links ---------- */
+.contact-direct { display: flex; flex-direction: column; }
+.contact-direct h3 { font: 500 12px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.contact-direct ul { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-around; }
+.contact-direct li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-direct li:last-child { border-bottom: 0; }
+.contact-direct span { font: 500 12px var(--font-mono); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.contact-direct a { font-weight: 500; display: inline-flex; gap: 8px; align-items: center; transition: color 0.2s; overflow-wrap: anywhere; }
+.contact-direct a i { font-style: normal; color: var(--muted); transition: transform 0.25s, color 0.2s; }
+.contact-direct a:hover { color: var(--accent); }
+.contact-direct a:hover i { color: var(--accent); transform: translateX(3px); }
+.contact-reply {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  font: 12px var(--font-mono);
+  color: var(--muted);
+}
+
+/* ---------- right: form ---------- */
+.cform {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+.cform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) {
+  .cform-row { grid-template-columns: 1fr; }
+}
+.cform label { display: grid; gap: 7px; }
+.cform label > span {
+  display: flex;
+  justify-content: space-between;
+  font: 500 12px var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.cform label > span em { font-style: normal; opacity: 0.7; }
+.cform input,
+.cform textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.5 var(--font-sans);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cform input::placeholder,
+.cform textarea::placeholder { color: var(--dim); }
+.cform input:focus,
+.cform textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--glow); }
+.cform label.bad input,
+.cform label.bad textarea { border-color: var(--accent-3); }
+.cform label small { font: 12px var(--font-mono); color: var(--accent-3); }
+
+.cform-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.cform-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+.cform-note { font: 12px var(--font-mono); color: var(--muted); max-width: 300px; }
+.cform .btn:disabled { opacity: 0.6; cursor: wait; }
+.cform-note.warn { color: var(--accent-3); }
+
+/* success state */
+.cform-done { text-align: center; justify-items: center; align-content: center; padding: 40px 28px; }
+.cform-check {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 700;
+  background: var(--accent);
+  color: var(--on-accent);
+  animation: popIn 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.cform-done h3 { font-family: var(--font-display); font-weight: 600; font-size: 26px; }
+.cform-done p { color: var(--muted); max-width: 360px; }
+@keyframes popIn { from { transform: scale(0.3); opacity: 0; } }

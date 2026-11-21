@@ -1,0 +1,28 @@
+.marquee {
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+  padding: 5px 0;
+  background: var(--bg-2);
+  transition: background 0.6s;
+}
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span {
+  font: 500 12px/1.4 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.marquee span:hover { color: var(--fg); }
+.marquee span::after { content: '/'; color: var(--dim); }
+@keyframes marquee { to { transform: translateX(-50%); } }

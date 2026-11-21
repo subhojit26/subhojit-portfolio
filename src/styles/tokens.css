@@ -1,0 +1,50 @@
+/* Design tokens: every colour in the site comes from here.
+   Change a value once and it updates everywhere, in both themes.
+
+   Palette: ink + cool white, violet as the primary accent, lime as a sharp secondary. */
+
+:root {
+  --bg: #0b0a10;
+  --bg-2: #12111a;
+  --card: #15141e;
+  --line: #262435;
+  --fg: #ecebf3;
+  --muted: #8e8c9e;
+  --dim: #4b495c;
+  --accent: #a78bfa;      /* violet */
+  --accent-2: #c6f432;    /* lime */
+  --accent-3: #e879f9;    /* orchid */
+  --on-accent: #0b0a10;   /* text placed on an accent background */
+  --glow: rgba(167, 139, 250, 0.16);
+  --grid: rgba(255, 255, 255, 0.06);
+  --term-bg: #0e0d15;
+  --term-fg: #dcdae6;
+  --shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.65);
+
+  --font-display: 'Clash Display', 'Geist', system-ui, sans-serif; /* headlines, name, big numbers */
+  --font-sans: 'Geist', system-ui, -apple-system, sans-serif;  /* body text */
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --gutter: clamp(16px, 5vw, 64px);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f6f6f9;
+  --bg-2: #ececf2;
+  --card: #ffffff;
+  --line: #e1e0ea;
+  --fg: #121019;
+  --muted: #5e5c6b;
+  --dim: #b2b0bf;
+  --accent: #6d28d9;
+  --accent-2: #4d7c0f;
+  --accent-3: #a21caf;
+  --on-accent: #ffffff;
+  --glow: rgba(109, 40, 217, 0.1);
+  --grid: rgba(18, 16, 25, 0.07);
+  --term-bg: #14121c;
+  --term-fg: #e6e4ee;
+  --shadow: 0 30px 70px -25px rgba(40, 20, 90, 0.25);
+  color-scheme: light;
+}

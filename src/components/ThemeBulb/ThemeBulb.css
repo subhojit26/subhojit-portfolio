@@ -1,0 +1,89 @@
+/* Minimal pendant lamp: light mode = on, dark mode = off */
+.lamp {
+  --shade-dark: #2a2a31;
+  --shade-light: #4a4a55;
+  --rim: #9a98a8;
+  --bulb-core: #5a5a64;
+  --bulb-edge: #3a3a42;
+
+  position: fixed;
+  top: 0;
+  right: clamp(20px, 4vw, 52px);
+  z-index: 130;
+  width: 48px;
+  transform-origin: 50% 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.lamp.on {
+  --shade-dark: #1c1b20;
+  --shade-light: #3b3a42;
+  --bulb-core: #ffffff;
+  --bulb-edge: #c9b8ff;
+}
+
+.lamp.swing { animation: lampSwing 1.4s cubic-bezier(0.3, 0.6, 0.3, 1); }
+@keyframes lampSwing {
+  0% { transform: rotate(0); }
+  20% { transform: rotate(7deg); }
+  45% { transform: rotate(-4.5deg); }
+  70% { transform: rotate(2deg); }
+  100% { transform: rotate(0); }
+}
+
+.lamp-cord {
+  width: 1.5px;
+  height: 44px;
+  margin: 0 auto;
+  background: color-mix(in srgb, var(--fg) 45%, transparent);
+  transition: height 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.lamp:hover .lamp-cord { height: 50px; }
+
+.lamp svg { position: relative; z-index: 1; display: block; width: 48px; height: auto; overflow: visible; }
+
+.shade-dark { stop-color: var(--shade-dark); transition: stop-color 0.5s; }
+.shade-light { stop-color: var(--shade-light); transition: stop-color 0.5s; }
+.bulb-core { stop-color: var(--bulb-core); transition: stop-color 0.4s; }
+.bulb-edge { stop-color: var(--bulb-edge); transition: stop-color 0.4s; }
+
+.lamp-metal { fill: color-mix(in srgb, var(--fg) 55%, var(--bg)); }
+.lamp-rim { fill: var(--rim); }
+.lamp-shade { filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25)); }
+.lamp-bulb { transition: filter 0.4s; }
+.lamp.on .lamp-bulb { filter: drop-shadow(0 0 6px #e4dbff) drop-shadow(0 0 14px rgba(139, 92, 246, 0.55)); }
+
+/* cone of light */
+.lamp-beam {
+  position: absolute;
+  top: calc(44px + 30px);
+  left: 50%;
+  width: 220px;
+  height: 260px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 100% at 50% 0%, rgba(139, 92, 246, 0.16), rgba(139, 92, 246, 0.05) 45%, transparent 75%);
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+  opacity: 0;
+  transition: opacity 0.6s, top 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.lamp.on .lamp-beam { opacity: 1; }
+.lamp:hover .lamp-beam { top: calc(50px + 30px); }
+
+.lamp-tip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 500 10.5px var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+.lamp:hover .lamp-tip,
+.lamp:focus-visible .lamp-tip { opacity: 1; }
+.lamp:focus-visible { outline: none; }
+.lamp:focus-visible svg { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
